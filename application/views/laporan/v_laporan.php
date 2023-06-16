@@ -35,6 +35,7 @@
                   <thead>
                   <tr>
                     <th>No</th>
+                    <th>Kode Barang</th>
                     <th>Uraian</th>
                     <th>Satuan</th>
                     <th>Persediaan Fisik</th>
@@ -48,6 +49,7 @@
                   <tbody>
                   <tr>
                     <td>1</td>
+                    <td>A001</td>
                     <td>Amplop Besar Kertas Kissing</td>
                     <td>pak</td>
                     <td>85</td>
