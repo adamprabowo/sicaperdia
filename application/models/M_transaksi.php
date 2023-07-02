@@ -74,23 +74,6 @@
 
             return $query->result();
         }
-
-
-        /** GET DATA JOIN BY ID */
-        function get_by_id($id){
-            $this->db->select('a.*,  c.nama as kategori, c.id as id_kategori, 
-                d.status as status, d.id as id_status, 
-                e.nama as penerima, e.id as id_penerima');
-            $this->db->from('barang a');  
-            $this->db->join('barang_histori_penerima b', 'a.id = b.id_barang', 'left');
-            $this->db->join('barang_kategori c', 'a.id_kategori = c.id', 'left');
-            $this->db->join('barang_status d', 'a.id_status = d.id', 'left');
-            $this->db->join('pegawai e', 'e.id = b.id_penerima_terbaru', 'left');
-
-            $this->db->where('a.id', $id);
-            
-            return $this->db->get('barang')->row();
-        }
         
     }
 

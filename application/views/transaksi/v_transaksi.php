@@ -56,7 +56,7 @@
                     <td><?=$dt->keterangan; ?></td>
                     <td><?=$dt->jumlah; ?></td>
                     <td><?=rupiah($dt->harga); ?></td>
-                    <td><?=$dt->status; ?></td>
+                    <td><?php echo ($dt->status==="1")? "OUT": "IN"; ?></td>
                     <td>
                         <!-- Call to action buttons -->
                         <ul class="list-inline m-0">
@@ -111,8 +111,10 @@
 
                                 <div class="form-group">
                                   <label for="stok">Stok Terbaru</label>
-                                  <input type="number" name="stok" class="form-control" id="stok" placeholder="Isikan Angka" required>
+                                  <input name="stok" class="form-control" id="stok" placeholder="Isikan Angka" readonly  required>
                               </div>
+
+                              
 
                               <div class="form-group">
                                   <label for="harga">Status</label>
@@ -127,11 +129,13 @@
                                     </select>
                                   
                                   </div>
+
+                                  <div class="form-group">
+                                  <label for="jumlah">Jumlah</label>
+                                  <input type="number" name="jumlah" class="form-control" id="jumlah" placeholder="Isikan Angka" required>
+                              </div>
                                 
-                                <div class="form-group">
-                                    <label for="keterangan">Keterangan</label>
-                                    <input type="text" name="keterangan" class="form-control" id="keterangan" placeholder="Isikan Keterangan" required>
-                                </div>
+                                
                           </div>
                         <div class="col-6">
 
@@ -152,15 +156,20 @@
                                     </select>
                                 </div>
                               <div class="form-group">
-                                  <label for="harga">Harga</label>
-                                  <input type="number" name="harga" class="form-control" id="harga" placeholder="Isikan Angka" required>
+                                  <label for="harga_terbaru">Harga Terbaru</label>
+                                  <input type="number" name="harga_terbaru" class="form-control" id="harga_terbaru" readonly  required>
                               </div>
-                              
+
+                              <div class="form-group">
+                                  <label for="harga">Harga Saat Ini</label>
+                                  <input type="number" name="harga" class="form-control" id="harga" required>
+                              </div>
+                              <div class="form-group">
+                                    <label for="keterangan">Keterangan</label>
+                                    <input type="text" name="keterangan" class="form-control" id="keterangan" placeholder="Isikan Keterangan" required>
+                                </div>
                                 
-                        <div class="form-group">
-                                  <label for="jumlah">Jumlah</label>
-                                  <input type="number" name="jumlah" class="form-control" id="jumlah" placeholder="Isikan Angka" required>
-                              </div>
+                        
                         </div>
                               
                             </div>    
@@ -233,11 +242,32 @@
                         // for(i=0; i<data.length; i++){
                         //     html += '<input type=text value='+data[i].harga+'/>';
                         // }
-                        $('#harga').val(data[0].harga);
+                        $('#harga_terbaru').val(data[0].harga_terbaru);
                         $('#stok').val(data[0].jumlah_stok_terbaru);
  
                     }
                 });
+                return false;
+            }); 
+
+
+            $('#status').change(function(){ 
+                var myStatus =$(this).val();
+                var hargaTerbaru = $('#harga_terbaru').val();
+
+                if(myStatus==''){
+                  $('#harga').val(hargaTerbaru).prop('readonly', true);
+                }
+                
+                if(myStatus=='1'){
+                  $('#harga').val(hargaTerbaru).prop('readonly', true);
+                }
+
+                
+                if(myStatus=='0'){
+                  $('#harga').val("").prop('readonly', false);
+                }
+                      
                 return false;
             }); 
              

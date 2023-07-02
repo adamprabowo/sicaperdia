@@ -31,6 +31,7 @@ class Transaksi extends CI_Controller {
     }
 
 	function get_detail_barang(){
+		// dipanggil oleh Ajax modal input data
 		$id_barang 		= $this->input->post('id', TRUE);
 		$data			= $this->M_barang->get_detail_barang($id_barang);
 		echo json_encode($data);
@@ -51,6 +52,7 @@ class Transaksi extends CI_Controller {
 
 		$jumlah_stok_terbaru	= $this->input->post('stok');
 		$jumlah_input			= $this->input->post('jumlah');
+		$harga_saat_ini			= $this->input->post('harga');
 
 		if($this->input->post('status')=='0'){
 			$jumlah_stok_terbaru	= $jumlah_stok_terbaru + $jumlah_input; 
@@ -72,6 +74,7 @@ class Transaksi extends CI_Controller {
 			// 2 update jumlah_stok_terbaru di tabel stok_tahunan
 			
 			$data['jumlah_stok_terbaru'] 	= $jumlah_stok_terbaru;
+			$data['harga'] 					= $harga_saat_ini;
 			$data['tanggal_diperbarui']		= date('Y-m-d');
 			
 			$resultUpdateStok = $this->M_transaksi->updateStokTahunan($data, $kode_barang, $tahun);

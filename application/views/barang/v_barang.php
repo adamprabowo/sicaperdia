@@ -46,7 +46,7 @@
                     <th>Nama</th>
                     <th>Harga</th>
                     <th>Kategori</th>
-                    <th>Aksi</th> 
+                   
                   </tr>
                   </thead>
                   <tbody>
@@ -56,27 +56,9 @@
                     <td width="5%"><?=$no; ?></td>
                     <td><?=$dt->kode_barang; ?></td>
                     <td><?=$dt->nama_barang; ?></td>
-                    <td><?=rupiah($dt->harga); ?></td>
+                    <td><?=rupiah($dt->harga_terbaru); ?></td>
                     <td><?=$dt->nama_kategori; ?></td>
-                    <td>
-                        <!-- Call to action buttons -->
-                        <ul class="list-inline m-0">
-                            <?php if($session['role_name']=='operator') { ?>
-                            <li class="list-inline-item">
-                                <a href="#" class="edit_kematian" data-toggle="modal" data-target="#modal_edit_kematian<?=$no?>" id="edit">
-                                  <i class="fa fa-edit" style="color:orange"></i>
-                                </a>
-                            </li>
-                            <?php } ?>
-                            <?php if($session['role_name']=='superadmin' || $session['role_name']=='admin') { ?>
-                            <li class="list-inline-item">
-                                <a href="#" class="delete_kematian" data-toggle="modal" data-target="#modal_delete_kematian<?=$no?>" id="delete">
-                                  <i class="fa fa-trash" style="color:red"></i>
-                                </a>
-                            </li>
-                            <?php }?>
-                        </ul>
-                    </td>
+                    
                     </tr>
                   <?php $no++; }} ?>
                   </tbody>

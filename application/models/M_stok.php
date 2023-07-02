@@ -19,7 +19,7 @@
         /** INSERT */
 
         function insert($data){
-            $this->db->insert('barang', $data);
+            $this->db->insert('tbl_stok_tahunan', $data);
             return $this->db->affected_rows();
         }
 
@@ -29,7 +29,7 @@
 
         function update($data, $id){
             $this->db->where('id', $id);
-            $this->db->update('barang', $data);
+            $this->db->update('tbl_stok_tahunan', $data);
             return $this->db->affected_rows();
         }
 
@@ -46,7 +46,7 @@
 
         function delete($id){
             $this->db->where('id', $id);
-            $this->db->delete('barang');
+            $this->db->delete('tbl_stok_tahunan');
            return $this->db->affected_rows();     
         }
 
