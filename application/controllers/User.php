@@ -21,7 +21,7 @@ class User extends CI_Controller {
 		$or_param['user.role_id'] = 4;
 		$role['role_id'] = 3;
 		$or_role['role_id'] = 4;
-		$param['is_active'] = 1;
+		// $param['is_active'] = 1;
 		$data['users'] = $this->m_user->getAllUser($param,$or_param);
 		$data['roles'] = $this->m_role->getRole($role,$or_role);
 		$sess['session'] = $this->getSession;
@@ -48,7 +48,25 @@ class User extends CI_Controller {
 		$update['role_id'] = $this->input->post('role_id');
 		$update['is_active'] = $this->input->post('is_active');
 		if ($this->m_user->updateUser($update,$where)) {
-			$this->session->set_flashdata('status', '<span class="glyphicon glyphicon-ok"></span> Perpindahan berhasil diubah');
+			$this->session->set_flashdata('status', '<span class="glyphicon glyphicon-ok"></span> Data berhasil diubah');
+			redirect('user');
+        }
+	}
+
+	public function activatePengguna($id){
+		$where['user_id'] = $id;
+		$update['is_active'] = "1";
+		if ($this->m_user->updateUser($update,$where)) {
+			$this->session->set_flashdata('status', '<span class="glyphicon glyphicon-ok"></span> Akun berhasil diaktifkan');
+			redirect('user');
+        }
+	}
+
+	public function deactivatePengguna($id){
+		$where['user_id'] = $id;
+		$update['is_active'] = "0";
+		if ($this->m_user->updateUser($update,$where)) {
+			$this->session->set_flashdata('status', '<span class="glyphicon glyphicon-ok"></span> Akun berhasil dinonaktifkan');
 			redirect('user');
         }
 	}

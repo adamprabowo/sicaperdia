@@ -24,20 +24,22 @@
     <section class="content">
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
+         
         <div class="row">
-          <?php if($session['role_name']=='superadmin' || $session['role_name']=='admin' || $session['role_name']=='operator') { ?>
+        <?php if($session['role_name']=='superadmin' || $session['role_name']=='admin' || $session['role_name']=='operator' ) { ?>
+       
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>5</h3>
+              <h3><?= $jumlah_barang[0]->jumlah ?></h3>
 
-                <p>Pindah Hari Ini</p>
+                <p>Data Barang</p>
               </div>
               <div class="icon">
                 <i class="ion ion-folder"></i>
               </div>
-              <a href="<?=base_url()?>pindah" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?=base_url()?>kematian" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -45,52 +47,59 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>6</h3>
-
-                <p>Total Pindah</p>
+                <h3><?= $jumlah_kategori[0]->jumlah ?></h3>
+                
+                <p>Data Kategori</p>
               </div>
               <div class="icon">
                 <i class="ion ion-filing"></i>
               </div>
-              <a href="<?=base_url()?>pindah" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?=base_url()?>kematian" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          <?php } ?> 
-
-          <?php if($session['role_name']=='superadmin' || $session['role_name']=='admin' || $session['role_name']=='visitor') { ?>
+          <?php } ?>
           <!-- ./col -->
+          <?php if($session['role_name']=='superadmin' || $session['role_name']=='admin' || $session['role_name']=='visitor' ) { ?>
+       
           <div class="col-lg-3 col-6">
+         
             <!-- small box -->
+           
             <div class="small-box bg-warning">
               <div class="inner">
                 <h3>7</h3>
 
-                <p>PBI Aktif</p>
+                <p>Data Transaksi Bulan Ini</p>
               </div>
               <div class="icon">
                 <i class="ion ion-document-text"></i>
               </div>
-              <a href="<?=base_url()?>pbi/aktif" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?=base_url()?>pbi/aktif" class="small-box-footer">Selengkapnya<i class="fas fa-arrow-circle-right"></i></a>
             </div>
+
           </div>
-          <!-- ./col -->
+          <!-- ./col --> 
           <div class="col-lg-3 col-6">
+
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>8</h3>
-
-                <p>PBI Non Aktif</p>
+              <h3>
+              <h3>17</h3>
+                </h3>
+                <p>Data Transaksi Tahun Ini</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
-              <a href="<?=base_url()?>pbi/nonaktif" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?=base_url()?>pbi/nonaktif" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
             </div>
+            
           </div>
           <!-- ./col -->
-          <?php } ?> 
         </div>
+        
+        <?php } ?>
         <!-- /.row -->
         
       </div><!-- /.container-fluid -->

@@ -60,14 +60,16 @@
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      "buttons": ["csv", "excel", "pdf", "print"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $("#pbiAktif").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["excel", "pdf", "print"]
+    }).buttons().container().appendTo('#pbiAktif_wrapper .col-md-6:eq(0)');
+
     $("#pindahTable").DataTable({
         "responsive": true, "lengthChange": false, "autoWidth": false,
         }).buttons().container().appendTo('#pindahTable_wrapper .col-md-6:eq(0)');
-    $("#penggunaTable").DataTable({
-    "responsive": true, "lengthChange": false, "autoWidth": false,
-    }).buttons().container().appendTo('#penggunaTable_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,

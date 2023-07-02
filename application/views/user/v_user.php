@@ -35,7 +35,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="penggunaTable" class="table table-bordered table-striped">
+                <table id="pindahTable" class="table table-bordered table-striped">
                   <thead>
                   <tr>
                     <th width="5%">No</th>
@@ -57,13 +57,19 @@
                         <ul class="list-inline m-0">
                             <li class="list-inline-item">
                                 <a href="#" class="edit_user" data-toggle="modal" data-target="#modal_edit_user<?=$no?>" id="edit_user">
-                                  <i class="fa fa-edit" style="color:green"></i>
+                                  <i class="fa fa-edit" style="color:blue"></i>
                                 </a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="#" class="delete_user" data-toggle="modal" data-target="#modal_delete_user<?=$no?>" id="delete_user">
-                                  <i class="fa fa-trash" style="color:red"></i>
-                                </a>
+                               <?php if ($user->is_active==1) { ?>
+                                    <a href="#" class="activate_user" data-toggle="modal" data-target="#modal_activate_user<?=$no?>" id="delete_user">
+                                    <i class="fa fa-lock" style="color:red"></i>
+                                    </a>
+                                <?php }else{ ?>
+                                    <a href="#" class="deactivate" data-toggle="modal" data-target="#modal_deactivate_user<?=$no?>" id="delete_user">
+                                    <i class="fa fa-lock-open" style="color:green"></i>
+                                	  </a>
+                                <?php  } ?>	
                             </li>
                         </ul>
                     </td>
@@ -129,7 +135,7 @@
                   </div>
                   <!-- /.card -->
               <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
                 <button type="submit" class="btn btn-primary">Simpan</button>
               </div>
             </form>
@@ -221,7 +227,49 @@
                 <p id="confirm_str">Yakin Hapus Pengguna <b><?=$user->username?></b> ?</p>
               </div>
               <div class="modal-footer">
-                <a class="btn btn-danger" href="<?=base_url().'user/deletePengguna/'.$user->user_id ?>"> Hapus </a>
+                <a class="btn btn-blue" href="<?=base_url().'user/deletePengguna/'.$user->user_id ?>"> Aktifkan </a>
+                <button class="btn btn-default" data-dismiss="modal"> Tidak</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <!-- ACTIVATE USER -->
+      <div class="modal fade" id="modal_activate_user<?=$no?>">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Konfirmasi</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p id="confirm_str">Yakin Nonaktifkan Pengguna <b><?=$user->username?></b> ?</p>
+              </div>
+              <div class="modal-footer">
+                <a class="btn btn-danger" href="<?=base_url().'user/deactivatePengguna/'.$user->user_id ?>"> Nonaktifkan </a>
+                <button class="btn btn-default" data-dismiss="modal"> Tidak</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+         <!-- DEACTIVATE USER -->
+      <div class="modal fade" id="modal_deactivate_user<?=$no?>">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Konfirmasi</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p id="confirm_str">Yakin Aktifkan Pengguna <b><?=$user->username?></b> ?</p>
+              </div>
+              <div class="modal-footer">
+                <a class="btn btn-primary" href="<?=base_url().'user/activatePengguna/'.$user->user_id ?>"> Aktifkan </a>
                 <button class="btn btn-default" data-dismiss="modal"> Tidak</button>
               </div>
             </div>

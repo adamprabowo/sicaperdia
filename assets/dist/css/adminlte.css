@@ -34973,9 +34973,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 .register-page {
   -ms-flex-align: center;
   align-items: center;
-  background-image: url("https://kependudukan.kebumenkab.go.id/assets/images/gallery/kependudukan_kebumenkab_go_id_260822-10.jpeg");
-  background-size: 100% auto;
-  background-color: #e9ecef;
+  background-color: #e9dddd;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;

@@ -23,7 +23,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/sicaperdia/';
+// $config['base_url'] = 'http://192.10.10.80/sidamaduk/';
+$config['base_url'] = 'http://localhost/sicaperpedia/';
+
+/**$config['base_url'] = (isset($_SERVER['HTTPS']) ? "https://" : "http://").$_SERVER['HTTP_HOST'].'/sidamaduk'; */
 
 /*
 |--------------------------------------------------------------------------

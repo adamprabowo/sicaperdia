@@ -6,14 +6,11 @@ class Dashboard extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
-		$this->load->model('m_pbi');
-		$this->load->model('m_pindah');
-		$this->load->view('dashboard/style');
+				
+        $this->load->model('M_barang');
+
 		$sess = $this->getSession = $this->session->all_userdata();
-		// echo '<pre>';
-		// print_r($sess);
-		// echo '</pre>';
-		// die();
+
 		if(empty($sess['user_id'])){
             redirect('login');
         }
@@ -21,14 +18,19 @@ class Dashboard extends CI_Controller {
 	
 	public function index()
 	{
-		$sess['session'] = $this->getSession;
-		
 		// echo '<pre>';
-		// print_r($data);
+		// print_r($this->getSession);
 		// echo '</pre>';
 		// die();
+
+		$data['jumlah_barang'] = $this->M_barang->get_jumlah_barang();
+		$data['jumlah_kategori'] = $this->M_barang->get_jumlah_kategori();
+		// var_dump($data);
+		// exit();
+
+		$sess['session'] = $this->getSession;
 		$this->load->view('templates/header',$sess);
-		$this->load->view('dashboard/v_dashboard');
+		$this->load->view('dashboard/v_dashboard',$data);
 		$this->load->view('templates/footer');
 	}
 
