@@ -153,7 +153,7 @@
           <?php if($session['role_name']=='superadmin' || $session['role_name']=='admin' || $session['role_name']=='visitor') { ?>
           <li class="nav-item <?php if($this->uri->segment(1)=="pbi"){echo "menu-open";}?>">
             <a href="#" class="nav-link <?php if($this->uri->segment(1)=="pbi"){echo "active";}?>">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-copy"></i>
               <p>
                 Laporan
                 <i class="right fas fa-angle-left"></i>
@@ -161,13 +161,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?=base_url()?>pbi/aktif" class="nav-link <?php if($this->uri->segment(2)=="aktif"){echo "active";}?>">
+                <a href="<?=base_url()?>laporan/kartuStok" class="nav-link <?php if($this->uri->segment(3)=="aktif"){echo "active";}?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Kartu Stok</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?=base_url()?>pbi/nonaktif" class="nav-link <?php if($this->uri->segment(2)=="nonaktif"){echo "active";}?>">
+                <a href="<?=base_url()?>laporan/tahunan" class="nav-link <?php if($this->uri->segment(3)=="nonaktif"){echo "active";}?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tahunan</p>
                 </a>
