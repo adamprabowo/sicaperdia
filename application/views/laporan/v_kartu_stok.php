@@ -29,13 +29,10 @@
                 <!-- /.col -->
                 <div class="col-sm-6 invoice-col">
                   <address>
-                    Nama Barang: <b>Baterai AA</b><br>
-                    Satuan: set
+                    Nama Barang : <b><?= $barang->nama_barang ?></b><br>
+                    Satuan : <b><?= $barang->satuan ?></b> <br>
+                    Harga Satuan : <b><?= rupiah($barang->harga) ?></b>
                   </address>
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-6 invoice-col">
-                  Kartu No: <b>AA1/003</b><br>
                 </div>
                 <!-- /.col -->
               </div>
@@ -57,15 +54,21 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>28 Juni 2023</td>
-                      <td>So/A002</td>
-                      <td>Pembelian, Puspita Warna, Capil</td>
-                      <td>5</td>
-                      <td>4</td>
-                      <td>100</td>
-                    </tr>
+                    <?php if (!empty($barang)) {
+                      $no=1; 
+                      $jml_masuk=0;
+                      $jml_keluar=0;
+                      foreach($kartu_stok as $ks){ ?>
+                      <tr>
+                      <td width="5%"><?=$no; ?></td>
+                      <td><?=$ks->tanggal; ?></td>
+                      <td><?=$ks->no_bukti ?></td>
+                      <td><?=$ks->keterangan; ?></td>
+                      <td><?= ($ks->status==1) ? $ks->jumlah : '' ; ?></td>
+                      <td><?= ($ks->status==2) ? $ks->jumlah : '' ;?></td>
+                      <td><?=$sisa ?></td>
+                      </tr>
+                    <?php $no++; ($ks->status==1) ? $jml_masuk+=$ks->jumlah : $jml_keluar+=$ks->jumlah ;  }} ?>
                     </tbody>
                     <tfoot>
                     <tr>
@@ -73,8 +76,8 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <th>50<span class=""></span></th>
-                        <th>20<span class=""></span></th>
+                        <th><?=$jml_masuk ?><span class=""></span></th>
+                        <th><?=$jml_keluar ?><span class=""></span></th>
                         <td></td>
                     </tr>
                     </tfoot>

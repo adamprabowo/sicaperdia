@@ -56,7 +56,7 @@
                     <td><?=$dt->keterangan; ?></td>
                     <td><?=$dt->jumlah; ?></td>
                     <td><?=rupiah($dt->harga); ?></td>
-                    <td><?php echo ($dt->status==="1")? "OUT": "IN"; ?></td>
+                    <td><?php echo ($dt->status==="2")? "OUT": "IN"; ?></td>
                     <td>
                         <!-- Call to action buttons -->
                         <ul class="list-inline m-0">
@@ -121,11 +121,9 @@
                                   <select name="status" id="status" class="form-control" >
                     
                                         <option  value="" >- Pilih Status -</option>
-                                        <option  value="0" <?php //$transaksi->kode_barang == $barang->id_barang ? "selected" : ""; ?>>Masuk</option>
-                                        <option  value="1" >Keluar</option>
+                                        <option  value="1" >Masuk</option>
+                                        <option  value="2" >Keluar</option>
                                         
-                                        
-
                                     </select>
                                   
                                   </div>
@@ -300,7 +298,7 @@
                 return false;
             }else{
 
-              if(b == "1"){
+              if(b == "2"){
                 if(d<c){
                   alert('Periksa kembali stok barang');
                   document.getElementById("jumlah").focus();

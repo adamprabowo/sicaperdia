@@ -39,14 +39,16 @@ class Transaksi extends CI_Controller {
 	}
 
 	public function inputData(){
-		$insert['kode_barang'] 	= $this->input->post('id_barang');
+		$kode_barang = $this->input->post('id_barang');;
+		$status = $this->input->post('status');
+		$insert['kode_barang'] 	= $kode_barang;
 		$insert['tanggal'] 		= $this->input->post('tanggal');
-
+		$insert['no_bukti'] 	= ($status=='1') ? 'Beli/'.$kode_barang : 'Mut/'.$kode_barang ;
 		
 		$insert['jumlah'] 		= $this->input->post('jumlah');
 		$insert['harga'] 		= $this->input->post('harga');
 
-		$insert['status'] 		= $this->input->post('status');
+		$insert['status'] 		= $status;
 		$insert['keterangan'] 	= $this->input->post('keterangan');
 		$insert['tahun'] 		= date('Y');
 
@@ -54,7 +56,7 @@ class Transaksi extends CI_Controller {
 		$jumlah_input			= $this->input->post('jumlah');
 		$harga_saat_ini			= $this->input->post('harga');
 
-		if($this->input->post('status')=='0'){
+		if($status=='1'){
 			$jumlah_stok_terbaru	= $jumlah_stok_terbaru + $jumlah_input; 
 		}else{
 			$jumlah_stok_terbaru	= $jumlah_stok_terbaru - $jumlah_input;

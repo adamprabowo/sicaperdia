@@ -7,7 +7,9 @@ class Laporan extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
+        $this->load->helper('tgl_indo');
         $this->load->model('M_barang');
+        $this->load->model('M_laporan');
 		$this->load->model('M_role');
 		$this->load->model('M_user');
 		$this->load->view('laporan/style');
@@ -29,9 +31,15 @@ class Laporan extends CI_Controller {
     }
 
     function lihatKartuStok($id=''){
-        $data['kode_barang']  = $id;
+        $data['kode_barang'] = $id;
+        $get_barang = $this->M_barang->get_detail_barang($id);
+        $data['kartu_stok'] = $this->M_laporan->getKartuStok($data['kode_barang']);
+        $jml_stok_terbaru = $this->M_laporan->getStokTerbaru($data['kode_barang']);
+
+        $data['barang'] = $get_barang[0];
+        $data['sisa'] = $jml_stok_terbaru->jumlah_stok_terbaru;
         // echo '<pre>';
-        // print_r($data);
+        // print_r($data['kartu_stok']);
         // echo '</pre>';
         // die();
 

@@ -48,11 +48,11 @@
         /** GET BY ID */
         function get_by_id($id){
             $this->db->select('a.*,  c.nama as kategori');
-            $this->db->from('barang a');  
+            $this->db->from('tbl_barang a');  
             $this->db->join('barang_histori_penerima b', 'a.id = b.id_barang', 'left');
             $this->db->where('a.id', $id);
             
-            return $this->db->get('barang')->row();
+            return $this->db->get('tbl_barang')->row();
         }
 
         /** INSERT */
