@@ -38,10 +38,6 @@ class Laporan extends CI_Controller {
 
         $data['barang'] = $get_barang[0];
         $data['sisa'] = $jml_stok_terbaru->jumlah_stok_terbaru;
-        // echo '<pre>';
-        // print_r($data['kartu_stok']);
-        // echo '</pre>';
-        // die();
 
         $sess['session'] = $this->getSession;
 		$this->load->view('templates/header',$sess);
@@ -51,11 +47,63 @@ class Laporan extends CI_Controller {
 
 	public function tahunan()
 	{
-		// $data['laporan'] = $this->m_laporan->getLaporan();
+		$q_laporan_tahunan = $this->M_laporan->getLaporan();
+        $i=0;
+		foreach ($q_laporan_tahunan as $param) {
+			$data['laporan_tahunan'][$i] = $this->returnDataTahunan($param);
+			$i++;
+		}
+        // echo '<pre>';
+        // print_r($data['laporan_tahunan']);
+        // echo '</pre>';
+        // die();
+        
         $sess['session'] = $this->getSession;
         $this->load->view('templates/header',$sess);
-        $this->load->view('laporan/v_tahunan');
+        $this->load->view('laporan/v_tahunan',$data);
         $this->load->view('templates/footer');
+	}
+
+    private function returnDataTahunan($param){
+		$where['kode_barang'] = $param->kode_barang;
+		$transaksi = $this->M_laporan->getTransaksi($param->kode_barang);
+        
+
+		$model = [];
+        if(!empty($param)){
+            if (!empty($transaksi)) {
+                $model = [
+                    'id_stok' => $param->id_stok,
+                    'tahun' => $param->tahun,
+                    'kode_barang' => $param->kode_barang,
+                    'uraian' => $param->nama_barang,
+                    'satuan' => $param->satuan,
+                    'persediaan_fisik_awal' => $param->jumlah_stok,
+                    'pembelian' => ($transaksi->status==1) ? $transaksi->jumlah : 0 ,
+                    'pemakaian' => ($transaksi->status==2) ? $transaksi->jumlah : 0 ,
+                    'persediaan_fisik_terbaru' => $param->jumlah_stok_terbaru,
+                    'harga_satuan' => $param->harga,
+                    'nilai_stok_fisik' => $param->jumlah_stok_terbaru*$param->harga
+                ];
+            } else {
+                $model = [
+                    'id_stok' => $param->id_stok,
+                    'tahun' => $param->tahun,
+                    'kode_barang' => $param->kode_barang,
+                    'uraian' => $param->nama_barang,
+                    'satuan' => $param->satuan,
+                    'persediaan_fisik_awal' => $param->jumlah_stok,
+                    'pembelian' => 0 ,
+                    'pemakaian' => 0 ,
+                    'persediaan_fisik_terbaru' => $param->jumlah_stok_terbaru,
+                    'harga_satuan' => $param->harga,
+                    'nilai_stok_fisik' => $param->jumlah_stok_terbaru*$param->harga
+                ];
+            }
+        }
+		$return = (object) $model;
+
+		return $return;
 	}
 
     

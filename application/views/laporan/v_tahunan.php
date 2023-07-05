@@ -5,12 +5,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Data Pengguna</h1>
+            <h1>Data Laporan Tahunan</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Pengguna</li>
+              <li class="breadcrumb-item"><a href="#">Laporan</a></li>
+              <li class="breadcrumb-item active">Tahunan</li>
             </ol>
           </div>
         </div>
@@ -36,28 +36,32 @@
                     <th>Kode Barang</th>
                     <th>Uraian</th>
                     <th>Satuan</th>
-                    <th>Persediaan Fisik</th>
+                    <th>Persediaan Fisik </br> per 31 Des 2022</th>
                     <th>Pembelian</th>
                     <th>Pemakaian</th>
-                    <th>Persediaan Fisik</th>
+                    <th>Persediaan Fisik </br> per 30 Jun 2023</th>
                     <th>Harga Satuan</th>
                     <th>Nilai Stok Fisik</th>
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>A001</td>
-                    <td>Amplop Besar Kertas Kissing</td>
-                    <td>pak</td>
-                    <td>85</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>85</td>
-                    <td>68.200</td>
-                    <td>5.797.000</td>
-                  </tr>
-                  </tfoot>
+                  <?php if (!empty($laporan_tahunan)) {
+                      $no=1; 
+                      foreach($laporan_tahunan as $lt){ ?>
+                      <tr>
+                      <td width="5%"><?=$no; ?></td>
+                      <td><?=$lt->kode_barang; ?></td>
+                      <td><?=$lt->uraian ?></td>
+                      <td><?=$lt->satuan; ?></td>
+                      <td><?=$lt->persediaan_fisik_awal; ?></td>
+                      <td><?=$lt->pembelian; ?></td>
+                      <td><?=$lt->pemakaian; ?></td>
+                      <td><?=$lt->persediaan_fisik_terbaru; ?></td>
+                      <td><?=$lt->harga_satuan; ?></td>
+                      <td><?=$lt->nilai_stok_fisik; ?></td>
+                      </tr>
+                    <?php $no++;  }} ?>
+                  </tbody>
                 </table>
               </div>
               <!-- /.card-body -->
