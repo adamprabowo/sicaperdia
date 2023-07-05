@@ -1,0 +1,7 @@
+UPDATE `tbl_stok_tahunan` SET `jumlah_stok` = '0';
+
+UPDATE `tbl_stok_tahunan` SET `jumlah_stok_terbaru` = '0';
+
+UPDATE `tbl_stok_tahunan` SET `harga` = NULL;
+
+UPDATE `tbl_barang` SET `harga` = NULL;

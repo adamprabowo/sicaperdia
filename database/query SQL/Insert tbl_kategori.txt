@@ -1,0 +1,1 @@
+INSERT INTO `tbl_kategori` (`id_kategori`, `nama_kategori`) VALUES (NULL, 'Alat Listrik'), (NULL, 'ATK'), (NULL, 'Kertas'), (NULL, 'Bahan Komputer'), (NULL, 'Barang Cetakan'), (NULL, 'Alat Kebersihan dan Bahan Pembersih');
