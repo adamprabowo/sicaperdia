@@ -40,6 +40,7 @@
                     <th>Tanggal</th>
                     <th>Nama Barang</th>
                     <th>Keterangan</th>
+                    <th>Nomor Bukti</th>
                     <th>Jumlah</th>
                     <th>Harga</th>
                     <th>Status</th>
@@ -54,6 +55,7 @@
                     <td><?=date_indo($dt->tanggal); ?></td>
                     <td><?=$dt->nama_barang; ?></td>
                     <td><?=$dt->keterangan; ?></td>
+                    <td><?=$dt->no_bukti; ?></td>
                     <td><?=$dt->jumlah; ?></td>
                     <td><?=rupiah($dt->harga); ?></td>
                     <td><?php echo ($dt->status==="2")? "OUT": "IN"; ?></td>

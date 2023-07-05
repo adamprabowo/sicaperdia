@@ -39,11 +39,20 @@ class Transaksi extends CI_Controller {
 	}
 
 	public function inputData(){
-		$kode_barang = $this->input->post('id_barang');;
+		$kode_barang = $this->input->post('id_barang');
+		
 		$status = $this->input->post('status');
-		$insert['kode_barang'] 	= $kode_barang;
+		$insert['kode_barang'] 	= $this->input->post('id_barang');
 		$insert['tanggal'] 		= $this->input->post('tanggal');
-		$insert['no_bukti'] 	= ($status=='1') ? 'Beli/'.$kode_barang : 'Mut/'.$kode_barang ;
+		//membuat nomor bukti
+		$inisial_kode_barang = substr($kode_barang, 0, 1);
+		$where = '/'.$inisial_kode_barang;
+		$max_no_bukti = $this->M_transaksi->getMaxKodeBarang($where);
+		$urutan = (int) substr($max_no_bukti->no_bukti, 7, 3);
+		$urutan++;
+		$huruf = substr($kode_barang, 0, 1);
+		$no_bukti_baru = $huruf . sprintf("%03s", $urutan);
+		$insert['no_bukti'] 	= ($status=='1') ? 'Beli/'.$no_bukti_baru : 'Mut/'.$no_bukti_baru ;
 		
 		$insert['jumlah'] 		= $this->input->post('jumlah');
 		$insert['harga'] 		= $this->input->post('harga');

@@ -46,7 +46,12 @@
                   </thead>
                   <tbody>
                   <?php if (!empty($laporan_tahunan)) {
-                      $no=1; 
+                      $no=1;
+                      $jml_pfa=0;//pfa (persediaan fisik awal)
+                      $jml_pembelian=0;
+                      $jml_pemakaian=0;
+                      $jml_pft=0;//pft (perseidaan fisik terbaru)
+                      $jml_nsf=0;// nsf (nilai stok fisik)
                       foreach($laporan_tahunan as $lt){ ?>
                       <tr>
                       <td width="5%"><?=$no; ?></td>
@@ -60,8 +65,29 @@
                       <td><?= "Rp " . number_format($lt->harga_satuan, 0, ",", "."); ?></td>
                       <td><?= "Rp " . number_format($lt->nilai_stok_fisik, 0, ",", "."); ?></td>
                       </tr>
-                    <?php $no++;  }} ?>
+                    <?php 
+                        $no++; 
+                        $jml_pfa+=$lt->persediaan_fisik_awal; 
+                        $jml_pembelian+=$lt->pembelian; 
+                        $jml_pemakaian+=$lt->pemakaian; 
+                        $jml_pft+=$lt->persediaan_fisik_terbaru; 
+                        $jml_nsf+=$lt->nilai_stok_fisik; 
+                    }} ?>
                   </tbody>
+                  <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <th>Jumlah <span class="totalForks"></span></th>
+                        <td></td>
+                        <th><?= number_format($jml_pfa, 0, ",", ".") ?><span class=""></span></th>
+                        <th><?= number_format($jml_pembelian, 0, ",", ".") ?><span class=""></span></th>
+                        <th><?= number_format($jml_pemakaian, 0, ",", ".") ?><span class=""></span></th>
+                        <th><?= number_format($jml_pft, 0, ",", ".") ?><span class=""></span></th>
+                        <td></td>
+                        <th><?= number_format($jml_nsf, 0, ",", ".") ?><span class=""></span></th>
+                    </tr>
+                    </tfoot>
                 </table>
               </div>
               <!-- /.card-body -->

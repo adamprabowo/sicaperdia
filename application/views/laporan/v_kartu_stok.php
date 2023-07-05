@@ -31,7 +31,7 @@
                   <address>
                     Nama Barang : <b><?= $barang->nama_barang ?></b><br>
                     Satuan : <b><?= $barang->satuan ?></b> <br>
-                    Harga Satuan : <b><?= rupiah($barang->harga) ?></b>
+                    Harga Satuan : <b><?= rupiah($barang->harga_terbaru) ?></b>
                   </address>
                 </div>
                 <!-- /.col -->
