@@ -257,7 +257,7 @@
                   $('#harga').val(hargaTerbaru).prop('readonly', true);
                 }
                 
-                if(myStatus=='1'){
+                if(myStatus=='2'){
                   $('#harga').val(hargaTerbaru).prop('readonly', true);
                 }
 

@@ -24,7 +24,7 @@ class M_laporan extends CI_Model {
 
 	//LAPORAN TAHUNAN
 	public function getLaporan(){
-    	$this->db->select('*');
+    	$this->db->select('*,tbl_stok_tahunan.harga as harga_satuan');
 		$this->db->order_by('id_stok', 'ASC');
 		$this->db->join('tbl_barang','tbl_barang.kode_barang=tbl_stok_tahunan.kode_barang');
     	$query = $this->db->get('tbl_stok_tahunan');

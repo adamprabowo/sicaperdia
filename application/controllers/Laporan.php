@@ -68,10 +68,9 @@ class Laporan extends CI_Controller {
 		$where['kode_barang'] = $param->kode_barang;
 		$transaksi = $this->M_laporan->getTransaksi($param->kode_barang);
         
-
 		$model = [];
         if(!empty($param)){
-            if (!empty($transaksi)) {
+            // if (!empty($transaksi)) {
                 $model = [
                     'id_stok' => $param->id_stok,
                     'tahun' => $param->tahun,
@@ -79,27 +78,27 @@ class Laporan extends CI_Controller {
                     'uraian' => $param->nama_barang,
                     'satuan' => $param->satuan,
                     'persediaan_fisik_awal' => $param->jumlah_stok,
-                    'pembelian' => ($transaksi->status==1) ? $transaksi->jumlah : 0 ,
-                    'pemakaian' => ($transaksi->status==2) ? $transaksi->jumlah : 0 ,
+                    'pembelian' => (!empty($transaksi)) ? ($transaksi->status==1) ? $transaksi->jumlah : 0 : 0,
+                    'pemakaian' => (!empty($transaksi)) ? ($transaksi->status==2) ? $transaksi->jumlah : 0 : 0,
                     'persediaan_fisik_terbaru' => $param->jumlah_stok_terbaru,
-                    'harga_satuan' => $param->harga,
-                    'nilai_stok_fisik' => $param->jumlah_stok_terbaru*$param->harga
+                    'harga_satuan' => $param->harga_satuan,
+                    'nilai_stok_fisik' => $param->jumlah_stok_terbaru*$param->harga_satuan
                 ];
-            } else {
-                $model = [
-                    'id_stok' => $param->id_stok,
-                    'tahun' => $param->tahun,
-                    'kode_barang' => $param->kode_barang,
-                    'uraian' => $param->nama_barang,
-                    'satuan' => $param->satuan,
-                    'persediaan_fisik_awal' => $param->jumlah_stok,
-                    'pembelian' => 0 ,
-                    'pemakaian' => 0 ,
-                    'persediaan_fisik_terbaru' => $param->jumlah_stok_terbaru,
-                    'harga_satuan' => $param->harga,
-                    'nilai_stok_fisik' => $param->jumlah_stok_terbaru*$param->harga
-                ];
-            }
+            // } else {
+            //     $model = [
+            //         'id_stok' => $param->id_stok,
+            //         'tahun' => $param->tahun,
+            //         'kode_barang' => $param->kode_barang,
+            //         'uraian' => $param->nama_barang,
+            //         'satuan' => $param->satuan,
+            //         'persediaan_fisik_awal' => $param->jumlah_stok,
+            //         'pembelian' => 0 ,
+            //         'pemakaian' => 0 ,
+            //         'persediaan_fisik_terbaru' => $param->jumlah_stok_terbaru,
+            //         'harga_satuan' => $param->harga_satuan,
+            //         'nilai_stok_fisik' => $param->jumlah_stok_terbaru*$param->harga_satuan
+            //     ];
+            // }
         }
 		$return = (object) $model;
 

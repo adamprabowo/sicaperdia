@@ -57,8 +57,8 @@
                       <td><?=$lt->pembelian; ?></td>
                       <td><?=$lt->pemakaian; ?></td>
                       <td><?=$lt->persediaan_fisik_terbaru; ?></td>
-                      <td><?=$lt->harga_satuan; ?></td>
-                      <td><?=$lt->nilai_stok_fisik; ?></td>
+                      <td><?= "Rp " . number_format($lt->harga_satuan, 0, ",", "."); ?></td>
+                      <td><?= "Rp " . number_format($lt->nilai_stok_fisik, 0, ",", "."); ?></td>
                       </tr>
                     <?php $no++;  }} ?>
                   </tbody>
