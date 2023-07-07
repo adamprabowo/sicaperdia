@@ -29,19 +29,19 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
+                <table id="laporanTahunan" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>No</th>
-                    <th>Kode Barang</th>
-                    <th>Uraian</th>
-                    <th>Satuan</th>
-                    <th>Persediaan Fisik </br> per 31 Des 2022</th>
-                    <th>Pembelian</th>
-                    <th>Pemakaian</th>
-                    <th>Persediaan Fisik </br> per 30 Jun 2023</th>
-                    <th>Harga Satuan</th>
-                    <th>Nilai Stok Fisik</th>
+                    <th width="2%">No</th>
+                    <th width="5%">Kode Barang</th>
+                    <th width="10%">Uraian</th>
+                    <th width="5%">Satuan</th>
+                    <th width="5%">Persediaan Fisik per 31 Des 2022</th>
+                    <th width="10%">Pembelian</th>
+                    <th width="10%">Pemakaian</th>
+                    <th width="5%">Persediaan Fisik per 30 Jun 2023</th>
+                    <th width="5%">Harga Satuan</th>
+                    <th width="10%">Nilai Stok Fisik</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -54,16 +54,16 @@
                       $jml_nsf=0;// nsf (nilai stok fisik)
                       foreach($laporan_tahunan as $lt){ ?>
                       <tr>
-                      <td width="5%"><?=$no; ?></td>
-                      <td><?=$lt->kode_barang; ?></td>
-                      <td><?=$lt->uraian ?></td>
-                      <td><?=$lt->satuan; ?></td>
-                      <td><?=$lt->persediaan_fisik_awal; ?></td>
-                      <td><?=$lt->pembelian; ?></td>
-                      <td><?=$lt->pemakaian; ?></td>
-                      <td><?=$lt->persediaan_fisik_terbaru; ?></td>
-                      <td><?= "Rp " . number_format($lt->harga_satuan, 0, ",", "."); ?></td>
-                      <td><?= "Rp " . number_format($lt->nilai_stok_fisik, 0, ",", "."); ?></td>
+                      <td width="2%"><?=$no; ?></td>
+                      <td width="5%"><?=$lt->kode_barang; ?></td>
+                      <td width="10%"><?=$lt->uraian ?></td>
+                      <td width="5%"><?=$lt->satuan; ?></td>
+                      <td width="5%"><?=$lt->persediaan_fisik_awal; ?></td>
+                      <td width="10%"><?=$lt->pembelian; ?></td>
+                      <td width="10%"><?=$lt->pemakaian; ?></td>
+                      <td width="5%"><?=$lt->persediaan_fisik_terbaru; ?></td>
+                      <td width="5%"><?= "Rp " . number_format($lt->harga_satuan, 0, ",", "."); ?></td>
+                      <td width="10%"><?= "Rp " . number_format($lt->nilai_stok_fisik, 0, ",", "."); ?></td>
                       </tr>
                     <?php 
                         $no++; 
@@ -91,6 +91,9 @@
                 </table>
               </div>
               <!-- /.card-body -->
+              <div class="card-footer">
+                <a class="btn btn-success float-right" href="<?=base_url().'/laporan/generateXls'?>"><i class="fas fa-download"></i> Generate Excel</a>
+              </div>
             </div>
             <!-- /.card -->
           </div>

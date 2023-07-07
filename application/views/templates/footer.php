@@ -62,10 +62,15 @@
       "responsive": true, "lengthChange": false, "autoWidth": false,
       "buttons": ["csv", "excel", "pdf", "print"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $("#pbiAktif").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["excel", "pdf", "print"]
-    }).buttons().container().appendTo('#pbiAktif_wrapper .col-md-6:eq(0)');
+    
+    $("#laporanTahunan").DataTable({
+      "responsive": true, 
+      "lengthChange": false, 
+      "autoWidth": false,
+      "paging": true,
+      "ordering": true,
+      "info": true,
+    }).buttons().container().appendTo('#laporanTahunan_wrapper .col-md-6:eq(0)');
 
     $("#pindahTable").DataTable({
         "responsive": true, "lengthChange": false, "autoWidth": false,

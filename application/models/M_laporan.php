@@ -31,6 +31,13 @@ class M_laporan extends CI_Model {
     	return $query->result();
 	}
 
+	// public function getSubtotal($where){
+    // 	$this->db->select('*');
+	// 	$this->db->where('kode_barang',$where);
+    // 	$query = $this->db->get('tbl_stok_tahunan');
+    // 	return $query->row();
+	// }
+
 	public function getTransaksi($where){
     	$this->db->select('*');
 		$this->db->where('kode_barang',$where);
