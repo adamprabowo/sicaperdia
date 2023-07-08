@@ -80,7 +80,7 @@
             $this->db->select_max('no_bukti');
             $this->db->like('no_bukti', $where, 'both');
             $query = $this->db->get('tbl_transaksi');
-            echo $this->db->last_query();
+            // echo $this->db->last_query();
             return $query->row();
         }
         

@@ -31,12 +31,14 @@ class M_laporan extends CI_Model {
     	return $query->result();
 	}
 
-	// public function getSubtotal($where){
-    // 	$this->db->select('*');
-	// 	$this->db->where('kode_barang',$where);
-    // 	$query = $this->db->get('tbl_stok_tahunan');
-    // 	return $query->row();
-	// }
+	public function getSubtotal($where){
+		$this->db->select('*,tbl_stok_tahunan.harga as harga_satuan');
+		$this->db->order_by('id_stok', 'ASC');
+		$this->db->like('tbl_stok_tahunan.kode_barang', $where, 'after');
+		$this->db->join('tbl_barang','tbl_barang.kode_barang=tbl_stok_tahunan.kode_barang');
+    	$query = $this->db->get('tbl_stok_tahunan');
+    	return $query->result();
+	}
 
 	public function getTransaksi($where){
     	$this->db->select('*');
@@ -44,6 +46,7 @@ class M_laporan extends CI_Model {
     	$query = $this->db->get('tbl_transaksi');
     	return $query->row();
 	}
+
 
 	
 }
