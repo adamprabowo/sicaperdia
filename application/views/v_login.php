@@ -42,7 +42,7 @@
     <div class="card-header text-center">
       <!-- <a href="<?=base_url()?>assets/index2.html" class="h1"><b>SICAPERPEDIA</b> <sub>kependudukan</sub></a> -->
       <h1><b>SI CAPER</b></h1>
-      <p>Sistem Informasi Data Barang</p>
+      <p>Sistem Pencatatan Persediaan</p>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Masukkan username dan password Anda</p>
