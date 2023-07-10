@@ -474,12 +474,13 @@ class Laporan extends CI_Controller {
         );
         $objPHPExcel->getActiveSheet()->getStyle('A6:I'.$rowCount_Total.'')->applyFromArray($style);
 
-        $filename = "tutsmake". date("Y-m-d-H-i-s").".xls";
-        header('Content-Type: application/vnd.ms-excel'); 
-        header('Content-Disposition: attachment;filename="'.$filename.'"');
-        header('Cache-Control: max-age=0'); 
-        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');  
-        $objWriter->save('php://output'); 
+        $filename = "Laporan - ". date("Y-m-d-H-i-s").".xlsx";
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+        ob_end_clean();
+        header('Content-type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment; filename="'.$filename.'"');
+        $objWriter->save('php://output');
+        
     }
 
     private function returnDataTahunan($param){

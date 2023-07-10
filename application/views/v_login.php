@@ -19,7 +19,7 @@
     justify-content: center;
 }
   </style>
-  <title>SICAPERPEDIA | Log in </title>
+  <title>SI CAPER | Log in </title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -41,7 +41,7 @@
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
       <!-- <a href="<?=base_url()?>assets/index2.html" class="h1"><b>SICAPERPEDIA</b> <sub>kependudukan</sub></a> -->
-      <h1><b>SICAPERPEDIA</b></h1>
+      <h1><b>SI CAPER</b></h1>
       <p>Sistem Informasi Data Barang</p>
     </div>
     <div class="card-body">
