@@ -8,7 +8,7 @@
     -ms-flex-align: center;
     align-items: center;
     background-color: #fff;
-    background: url("./assets/dist/img/ruangtunggu1.jpeg") fixed;
+    background: url("./assets/dist/img/disdukcapil_gedung.jpeg") fixed;
       background-size: cover;
     display: -ms-flexbox;
     display: flex;

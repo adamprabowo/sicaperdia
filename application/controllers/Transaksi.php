@@ -140,7 +140,7 @@ class Transaksi extends CI_Controller {
 			// Menentukan data stok akan ditambah atau dikurangi berdasarkan
 			// status mutasi, 0 artinya status masuk, 1 artinya status keluar
 			
-			if($status == 1){
+			if($status == 2){
 				// status keluar, jika dibatalkan berarti ditambahkan ke stok
 				$jumlah_stok_terbaru = $jumlah_stok_terbaru + $jumlah;
 

@@ -44,7 +44,7 @@ class M_laporan extends CI_Model {
     	$this->db->select('*');
 		$this->db->where('kode_barang',$where);
     	$query = $this->db->get('tbl_transaksi');
-    	return $query->row();
+    	return $query->result();
 	}
 
 

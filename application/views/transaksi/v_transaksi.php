@@ -292,23 +292,22 @@
             
 
             let c = document.getElementById("jumlah").value;
+            var jumlah = parseInt(c);
             let d = document.getElementById("stok").value;
+            var stok = parseInt(d);
 
             if(c == ""){
                 alert('Harus mengisi jumlah');
                 document.getElementById("jumlah").focus();
                 return false;
             }else{
-
               if(b == "2"){
-                if(d<c){
+                if(jumlah>stok){
                   alert('Periksa kembali stok barang');
                   document.getElementById("jumlah").focus();
                   return false;
                 }
-                
-            }
-
+              }
             }
             
 

@@ -54,6 +54,7 @@ class Laporan extends CI_Controller {
 			$i++;
 		}
         
+        
         $sess['session'] = $this->getSession;
         $this->load->view('templates/header',$sess);
         $this->load->view('laporan/v_tahunan',$data);
@@ -484,6 +485,21 @@ class Laporan extends CI_Controller {
     private function returnDataTahunan($param){
 		$where['kode_barang'] = $param->kode_barang;
 		$transaksi = $this->M_laporan->getTransaksi($param->kode_barang);
+        $j=0;
+        $pembelian = 0;
+        $pemakaian = 0;
+        foreach ($transaksi as $ts) {
+            if ($ts->status==1) {
+                $pembelian+=$ts->jumlah;
+            } elseif ($ts->status==2) {
+                $pemakaian+=$ts->jumlah;
+            }
+            $j++;
+        }
+        // echo '<pre>';
+        // print_r($pembelian);
+        // echo '</pre>';
+        // die();
         
 		$model = [];
         if(!empty($param)){
@@ -494,8 +510,8 @@ class Laporan extends CI_Controller {
                 'uraian' => $param->nama_barang,
                 'satuan' => $param->satuan,
                 'persediaan_fisik_awal' => $param->jumlah_stok,
-                'pembelian' => (!empty($transaksi)) ? ($transaksi->status==1) ? $transaksi->jumlah : 0 : 0,
-                'pemakaian' => (!empty($transaksi)) ? ($transaksi->status==2) ? $transaksi->jumlah : 0 : 0,
+                'pembelian' => $pembelian,
+                'pemakaian' => $pemakaian,
                 'persediaan_fisik_terbaru' => $param->jumlah_stok_terbaru,
                 'harga_satuan' => $param->harga_satuan,
                 'nilai_stok_fisik' => $param->jumlah_stok_terbaru*$param->harga_satuan
