@@ -59,15 +59,28 @@
                       $jml_masuk=0;
                       $jml_keluar=0;
                       foreach($kartu_stok as $ks){ ?>
-                      <tr>
-                      <td width="5%"><?=$no; ?></td>
-                      <td><?=$ks->tanggal; ?></td>
-                      <td><?=$ks->no_bukti ?></td>
-                      <td><?=$ks->keterangan; ?></td>
-                      <td><?= ($ks->status==1) ? $ks->jumlah : '' ; ?></td>
-                      <td><?= ($ks->status==2) ? $ks->jumlah : '' ;?></td>
-                      <td><?=$sisa ?></td>
-                      </tr>
+                        <?php 
+                          if ($no==1) { ?>
+                              <tr style="background-color:#fbeddf">
+                              <td width="5%"><?=$no; ?></td>
+                              <td><?=$ks->tanggal; ?></td>
+                              <td> - </td>
+                              <td> Saldo Awal </td>
+                              <td> </td>
+                              <td> </td>
+                              <td><?= $data_awal->jumlah_stok ?></td>
+                              </tr>
+                        <?php } else { ?>
+                              <tr>
+                              <td width="5%"><?=$no; ?></td>
+                              <td><?=$ks->tanggal; ?></td>
+                              <td><?=$ks->no_bukti ?></td>
+                              <td><?=$ks->keterangan; ?></td>
+                              <td><?= ($ks->status==1) ? $ks->jumlah : '' ; ?></td>
+                              <td><?= ($ks->status==2) ? $ks->jumlah : '' ;?></td>
+                              <td><?=$sisa ?></td>
+                              </tr>
+                        <?php } ?>
                     <?php $no++; ($ks->status==1) ? $jml_masuk+=$ks->jumlah : $jml_keluar+=$ks->jumlah ;  }} ?>
                     </tbody>
                     <tfoot>
@@ -90,10 +103,7 @@
               <!-- this row will not appear when printing -->
               <div class="row no-print">
                 <div class="col-12">
-                  <a href="invoice-print.html" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
-                  <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
-                    <i class="fas fa-download"></i> Generate PDF
-                  </button>
+                  <a class="btn btn-primary float-right" style="margin-right: 5px;" href="<?=base_url().'laporan/pdfKartuStok/'.$kode_barang ?>" target="_blank"><i class="fa fa-file-pdf-o" style="font-size:24px"></i>  Generate PDF</a>
                 </div>
               </div>
             </div>

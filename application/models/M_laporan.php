@@ -23,6 +23,13 @@ class M_laporan extends CI_Model {
     }
 
 	//LAPORAN TAHUNAN
+	public function getDetailLaporan($where){
+		$this->db->select('*');
+		$this->db->where('kode_barang',$where);
+		$query = $this->db->get('tbl_stok_tahunan');
+		return $query->row();
+	}
+
 	public function getLaporan(){
     	$this->db->select('*,tbl_stok_tahunan.harga as harga_satuan');
 		$this->db->order_by('id_stok', 'ASC');

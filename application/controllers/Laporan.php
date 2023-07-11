@@ -20,8 +20,6 @@ class Laporan extends CI_Controller {
 	}
 
     function kartuStok(){
-        $this->load->model('M_barang');
-
         $data['list_barang'] = $this->M_barang->get_data_join();
         
         $sess['session'] = $this->getSession;
@@ -33,6 +31,7 @@ class Laporan extends CI_Controller {
     function lihatKartuStok($id=''){
         $data['kode_barang'] = $id;
         $get_barang = $this->M_barang->get_detail_barang($id);
+        $data['data_awal'] = $this->M_laporan->getDetailLaporan($id);
         $data['kartu_stok'] = $this->M_laporan->getKartuStok($data['kode_barang']);
         $jml_stok_terbaru = $this->M_laporan->getStokTerbaru($data['kode_barang']);
 
@@ -43,6 +42,42 @@ class Laporan extends CI_Controller {
 		$this->load->view('templates/header',$sess);
 		$this->load->view('laporan/v_kartu_stok',$data);
 		$this->load->view('templates/footer');
+    }
+
+    public function pdfKartuStok($id='')
+    {
+        // panggil library yang kita buat sebelumnya yang bernama pdfgenerator
+        $this->load->library('pdfgenerator');
+        
+        // title dari pdf
+        $this->data['title_pdf'] = 'Kartu Stok';
+        
+        // filename dari pdf ketika didownload
+        $file_pdf = 'kartu_stok';
+        // setting paper
+        $paper = 'A4';
+        //orientasi paper potrait / landscape
+        $orientation = "portrait";
+
+        $this->data['kode_barang'] = $id;
+        $get_barang = $this->M_barang->get_detail_barang($id);
+        $this->data['data_awal'] = $this->M_laporan->getDetailLaporan($id);
+        $this->data['kartu_stok'] = $this->M_laporan->getKartuStok($id);
+        $jml_stok_terbaru = $this->M_laporan->getStokTerbaru($id);
+
+        $this->data['barang'] = $get_barang[0];
+        $this->data['sisa'] = $jml_stok_terbaru->jumlah_stok_terbaru;
+
+
+        // echo '<pre>';
+        // print_r($this->data);
+        // echo '</pre>';
+        // die();
+        
+		$html = $this->load->view('laporan/v_kartu_stok_pdf',$this->data, true);	    
+        
+        // run dompdf
+        $this->pdfgenerator->generate($html, $file_pdf,$paper,$orientation);
     }
 
 	public function tahunan()
