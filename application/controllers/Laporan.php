@@ -165,6 +165,14 @@ class Laporan extends CI_Controller {
         //     $rowCount++;
         // }
 
+        //Format Kode
+        $objPHPExcel->getActiveSheet()->getStyle('D')->getNumberFormat()->setFormatCode('#,##0');
+        $objPHPExcel->getActiveSheet()->getStyle('E')->getNumberFormat()->setFormatCode('#,##0');
+        $objPHPExcel->getActiveSheet()->getStyle('F')->getNumberFormat()->setFormatCode('#,##0');
+        $objPHPExcel->getActiveSheet()->getStyle('G')->getNumberFormat()->setFormatCode('#,##0');
+        $objPHPExcel->getActiveSheet()->getStyle('H')->getNumberFormat()->setFormatCode('#,##0');
+        $objPHPExcel->getActiveSheet()->getStyle('I')->getNumberFormat()->setFormatCode('#,##0');
+
         //set row kategori A
         $q_kategori_A = $this->M_laporan->getSubtotal('A');
         $i=0;
@@ -189,8 +197,8 @@ class Laporan extends CI_Controller {
             $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount_A, $list_A->pembelian);
             $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount_A, $list_A->pemakaian);
             $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount_A, $list_A->persediaan_fisik_terbaru);
-            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount_A, number_format($list_A->harga_satuan, 0, ",", ".") );
-            $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount_A, number_format($list_A->nilai_stok_fisik, 0, ",", ".") );
+            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount_A, $list_A->harga_satuan);
+            $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount_A, $list_A->nilai_stok_fisik);
             
             $rowCount_A++;
             $pfa_A+=$list_A->persediaan_fisik_awal;
@@ -204,7 +212,7 @@ class Laporan extends CI_Controller {
         $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount_A, $pembelian_A);
         $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount_A, $pemakaian_A);
         $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount_A, $pft_A);
-        $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount_A, number_format($nsf_A, 0, ",", "."));
+        $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount_A, $nsf_A);
         $objPHPExcel->getActiveSheet()->getStyle('A'.$rowCount_A.':I'.$rowCount_A.'')->getFont()->setBold(true);
 
         //set row kategori B
@@ -232,8 +240,8 @@ class Laporan extends CI_Controller {
             $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount_B, $list_B->pembelian);
             $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount_B, $list_B->pemakaian);
             $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount_B, $list_B->persediaan_fisik_terbaru);
-            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount_B, number_format($list_B->harga_satuan, 0, ",", "."));
-            $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount_B, number_format($list_B->nilai_stok_fisik, 0, ",", "."));
+            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount_B, $list_B->harga_satuan);
+            $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount_B, $list_B->nilai_stok_fisik);
 
             $rowCount_B++;
             $pfa_B+=$list_B->persediaan_fisik_awal;
@@ -247,7 +255,7 @@ class Laporan extends CI_Controller {
         $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount_B, $pembelian_B);
         $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount_B, $pemakaian_B);
         $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount_B, $pft_B);
-        $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount_B, number_format($nsf_B, 0, ",", "."));
+        $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount_B, $nsf_B);
         $objPHPExcel->getActiveSheet()->getStyle('A'.$rowCount_B.':I'.$rowCount_B.'')->getFont()->setBold(true);
 
         //set row kategori C
@@ -275,8 +283,8 @@ class Laporan extends CI_Controller {
             $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount_C, $list_C->pembelian);
             $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount_C, $list_C->pemakaian);
             $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount_C, $list_C->persediaan_fisik_terbaru);
-            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount_C, number_format($list_C->harga_satuan, 0, ",", "."));
-            $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount_C, number_format($list_C->nilai_stok_fisik, 0, ",", "."));
+            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount_C, $list_C->harga_satuan);
+            $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount_C, $list_C->nilai_stok_fisik);
             
             $rowCount_C++;
             $pfa_C+=$list_C->persediaan_fisik_awal;
@@ -290,7 +298,7 @@ class Laporan extends CI_Controller {
         $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount_C, $pembelian_C);
         $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount_C, $pemakaian_C);
         $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount_C, $pft_C);
-        $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount_C, number_format($nsf_C, 0, ",", "."));
+        $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount_C, $nsf_C);
         $objPHPExcel->getActiveSheet()->getStyle('A'.$rowCount_C.':I'.$rowCount_C.'')->getFont()->setBold(true);
 
         //set row kategori D
@@ -318,8 +326,8 @@ class Laporan extends CI_Controller {
             $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount_D, $list_D->pembelian);
             $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount_D, $list_D->pemakaian);
             $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount_D, $list_D->persediaan_fisik_terbaru);
-            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount_D, number_format($list_D->harga_satuan, 0, ",", "."));
-            $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount_D, number_format($list_D->nilai_stok_fisik, 0, ",", "."));
+            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount_D, $list_D->harga_satuan);
+            $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount_D, $list_D->nilai_stok_fisik);
             
             $rowCount_D++;
             $pfa_D+=$list_D->persediaan_fisik_awal;
@@ -333,7 +341,7 @@ class Laporan extends CI_Controller {
         $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount_D, $pembelian_D);
         $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount_D, $pemakaian_D);
         $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount_D, $pft_D);
-        $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount_D, number_format($nsf_D, 0, ",", "."));
+        $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount_D, $nsf_D);
         $objPHPExcel->getActiveSheet()->getStyle('A'.$rowCount_D.':I'.$rowCount_D.'')->getFont()->setBold(true);
 
         //set row kategori E
@@ -361,8 +369,9 @@ class Laporan extends CI_Controller {
             $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount_E, $list_E->pembelian);
             $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount_E, $list_E->pemakaian);
             $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount_E, $list_E->persediaan_fisik_terbaru);
-            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount_E, number_format($list_E->harga_satuan, 0, ",", "."));
-            $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount_E, number_format($list_E->nilai_stok_fisik, 0, ",", "."));
+            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount_E, $list_E->harga_satuan);
+            $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount_E, $list_E->nilai_stok_fisik);
+            
             
             $rowCount_E++;
             $pfa_E+=$list_E->persediaan_fisik_awal;
@@ -376,7 +385,7 @@ class Laporan extends CI_Controller {
         $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount_E, $pembelian_E);
         $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount_E, $pemakaian_E);
         $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount_E, $pft_E);
-        $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount_E, number_format($nsf_E, 0, ",", "."));
+        $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount_E, $nsf_E);
         $objPHPExcel->getActiveSheet()->getStyle('A'.$rowCount_E.':I'.$rowCount_E.'')->getFont()->setBold(true);
 
         //set row kategori F
@@ -404,8 +413,8 @@ class Laporan extends CI_Controller {
             $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount_F, $list_F->pembelian);
             $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount_F, $list_F->pemakaian);
             $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount_F, $list_F->persediaan_fisik_terbaru);
-            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount_F, number_format($list_F->harga_satuan, 0, ",", "."));
-            $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount_F, number_format($list_F->nilai_stok_fisik, 0, ",", "."));
+            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount_F, $list_F->harga_satuan);
+            $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount_F, $list_F->nilai_stok_fisik);
             
             $rowCount_F++;
             $pfa_F+=$list_F->persediaan_fisik_awal;
@@ -419,7 +428,7 @@ class Laporan extends CI_Controller {
         $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount_F, $pembelian_F);
         $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount_F, $pemakaian_F);
         $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount_F, $pft_F);
-        $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount_F, number_format($nsf_F, 0, ",", "."));
+        $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount_F, $nsf_F);
         $objPHPExcel->getActiveSheet()->getStyle('A'.$rowCount_F.':I'.$rowCount_F.'')->getFont()->setBold(true);
 
         //set Total
@@ -454,7 +463,7 @@ class Laporan extends CI_Controller {
         $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount_Total, $total_pembelian);
         $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount_Total, $total_pemakaian);
         $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount_Total, $total_pft);
-        $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount_Total, number_format($total_nsf, 0, ",", "."));
+        $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount_Total, $total_nsf);
         $objPHPExcel->getActiveSheet()->getStyle('A'.$rowCount_Total.':I'.$rowCount_Total.'')->getFont()->setBold(true);
 
         // Set Font Color, Font Style and Font Alignment
@@ -474,7 +483,7 @@ class Laporan extends CI_Controller {
         );
         $objPHPExcel->getActiveSheet()->getStyle('A6:I'.$rowCount_Total.'')->applyFromArray($style);
 
-        $filename = "Laporan - ". date("Y-m-d-H-i-s").".xlsx";
+        $filename = "Laporan Persediaan-". date("Y-m-d-H-i-s").".xlsx";
         $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
         ob_end_clean();
         header('Content-type: application/vnd.ms-excel');
