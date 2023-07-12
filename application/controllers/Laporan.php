@@ -38,6 +38,11 @@ class Laporan extends CI_Controller {
         $data['barang'] = $get_barang[0];
         $data['sisa'] = $jml_stok_terbaru->jumlah_stok_terbaru;
 
+        // echo '<pre>';
+        // print_r($data);
+        // echo '</pre>';
+        // die();
+
         $sess['session'] = $this->getSession;
 		$this->load->view('templates/header',$sess);
 		$this->load->view('laporan/v_kartu_stok',$data);
@@ -67,12 +72,6 @@ class Laporan extends CI_Controller {
 
         $this->data['barang'] = $get_barang[0];
         $this->data['sisa'] = $jml_stok_terbaru->jumlah_stok_terbaru;
-
-
-        // echo '<pre>';
-        // print_r($this->data);
-        // echo '</pre>';
-        // die();
         
 		$html = $this->load->view('laporan/v_kartu_stok_pdf',$this->data, true);	    
         
@@ -567,56 +566,7 @@ class Laporan extends CI_Controller {
 		return $return;
 	}
 
-    // private function returnRowExcel($kategori,$rowCount_x){
-    //     //set row kategori B
-    //     $q_kategori = $this->M_laporan->getSubtotal($kategori);
-    //     $i=0;
-	// 	foreach ($q_kategori as $param) {
-	// 		$data['kategori'][$i] = $this->returnDataTahunan($param);
-	// 		$i++;
-	// 	}
-
-    //     switch ($kategori) {
-    //         case $kategori=='A':
-    //             $rowCount=9;
-    //             break;
-    //         case $kategori=='B':
-    //             $rowCount=9;
-    //             break;
-    //     }
-    //     $rowCount = $rowCount_x;
-    //     $pfa_B = 0;
-    //     $pembelian_B = 0;
-    //     $pemakaian_B = 0;
-    //     $nsf_B = 0;
-    //     foreach ($data['kategori_B'] as $list_B) {
-    //         if ($rowCount_B == $rowCount_A+2) {
-    //             $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount_B, 'B. ATK');
-    //             $objPHPExcel->getActiveSheet()->getStyle('B'. $rowCount_B)->getFont()->setBold(true);
-    //         } else {
-    //             $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount_B, $list_B->kode_barang);
-    //             $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount_B, $list_B->uraian);
-    //             $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount_B, $list_B->satuan);
-    //             $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount_B, $list_B->persediaan_fisik_awal);
-    //             $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount_B, $list_B->pembelian);
-    //             $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount_B, $list_B->pemakaian);
-    //             $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount_B, $list_B->persediaan_fisik_terbaru);
-    //             $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount_B, $list_B->harga_satuan);
-    //             $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount_B, $list_B->nilai_stok_fisik);
-    //         }
-    //         $rowCount_B++;
-    //         $pfa_B+=$list_B->persediaan_fisik_awal;
-    //         $pembelian_B+=$list_B->pembelian;
-    //         $pemakaian_B+=$list_B->pemakaian;
-    //         $nsf_B+=$list_B->nilai_stok_fisik;
-    //     }
-    //     $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount_B, 'Subtotal');
-    //     $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount_B, $pfa_B);
-    //     $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount_B, $pembelian_B);
-    //     $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount_B, $pemakaian_B);
-    //     $objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount_B, $nsf_B);
-    //     $objPHPExcel->getActiveSheet()->getStyle('A'.$rowCount_B.':I'.$rowCount_B.'')->getFont()->setBold(true);
-    // }
+    
 
     
 

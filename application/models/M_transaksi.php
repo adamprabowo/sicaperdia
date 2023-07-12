@@ -4,10 +4,23 @@
 
 
         /** COUNT */
-        public function get_jumlah(){
+        // Bulan
+        public function get_jumlah_bulan(){
             $this->db->select('count(*) as jumlah');
-            return $this->db->get('tbl_transaksi')->result();
+            $this->db->where("MONTH(tanggal)",date('m'));
+            $this->db->where("YEAR(tanggal)",date('Y'));
+            $query = $this->db->get('tbl_transaksi');
+            return $query->result();
         }
+
+        // Tahun
+        public function get_jumlah_tahun(){
+            $this->db->select('count(*) as jumlah');
+            $this->db->where("YEAR(tanggal)",date('Y'));
+            $query = $this->db->get('tbl_transaksi');
+            return $query->result();
+        }
+
 
         /** GET */
         function get_data(){

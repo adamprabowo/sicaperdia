@@ -77,37 +77,41 @@
                     <th>Keluar</th>
                     <th>SISA</th>
                 </tr>
+                <tr style="background-color:#FFF7D4">
+                    <th width="5%"> </th>
+                    <th> <?= date_indo($data_awal->tanggal_awal) ?> </th>
+                    <th>  </th>
+                    <th> Saldo Awal </th>
+                    <th> </th>
+                    <th> </th>
+                    <th><?= $data_awal->jumlah_stok ?></th>
+                </tr>
             </thead>
             <tbody>
                 <?php if (!empty($barang)) {
-                    $no=1; 
-                    $jml_masuk=0;
-                    $jml_keluar=0;
-                    foreach($kartu_stok as $ks){ ?>
-                    <?php 
-                        if ($no==1) { ?>
-                            <tr style="background-color:#fbeddf">
-                            <td width="5%"><?=$no; ?></td>
-                            <td width="15%"><?=$ks->tanggal; ?></td>
-                            <td> - </td>
-                            <td> Saldo Awal </td>
-                            <td> </td>
-                            <td> </td>
-                            <td><?= $data_awal->jumlah_stok ?></td>
-                            </tr>
-                    <?php } else { ?>
-                            <tr>
-                            <td width="5%"><?=$no; ?></td>
-                            <td><?=$ks->tanggal; ?></td>
-                            <td><?=$ks->no_bukti ?></td>
-                            <td><?=$ks->keterangan; ?></td>
-                            <td><?= ($ks->status==1) ? $ks->jumlah : '' ; ?></td>
-                            <td><?= ($ks->status==2) ? $ks->jumlah : '' ;?></td>
-                            <td><?=$sisa ?></td>
-                            </tr>
-                    <?php } ?>
-                <?php $no++; ($ks->status==1) ? $jml_masuk+=$ks->jumlah : $jml_keluar+=$ks->jumlah ;  }} ?>
+                $no=1; 
+                $jml_masuk=0;
+                $jml_keluar=0;
+                foreach($kartu_stok as $ks){ ?>
+                <tr>
+                <td width="5%"><?=$no; ?></td>
+                <td><?=date_indo($ks->tanggal); ?></td>
+                <td><?=$ks->no_bukti ?></td>
+                <td><?=$ks->keterangan; ?></td>
+                <td><?= ($ks->status==1) ? $ks->jumlah : '' ; ?></td>
+                <td><?= ($ks->status==2) ? $ks->jumlah : '' ;?></td>
+                <td></td>
+                </tr>
+            <?php $no++; ($ks->status==1) ? $jml_masuk+=$ks->jumlah : $jml_keluar+=$ks->jumlah ;  }} ?>
             </tbody>
+            <tfoot>
+            <tr style="background-color:#D0F5BE">
+                <th colspan="4">Jumlah <span class="totalForks"></span></th>
+                <th><?=$jml_masuk ?><span class=""></span></th>
+                <th><?=$jml_keluar ?><span class=""></span></th>
+                <th><?=$sisa ?><span class=""></span></th>
+            </tr>
+            </tfoot>
         </table>
     </body>
 </html>

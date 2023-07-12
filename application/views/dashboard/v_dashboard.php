@@ -39,7 +39,7 @@
               <div class="icon">
                 <i class="ion ion-folder"></i>
               </div>
-              <a href="<?=base_url()?>kematian" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?=base_url()?>barang" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -54,7 +54,7 @@
               <div class="icon">
                 <i class="ion ion-filing"></i>
               </div>
-              <a href="<?=base_url()?>kematian" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?=base_url()?>kategori" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <?php } ?>
@@ -67,14 +67,14 @@
            
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>7</h3>
+                <h3><?= $jumlah_transaksi_bulan[0]->jumlah ?></h3>
 
                 <p>Data Transaksi Bulan Ini</p>
               </div>
               <div class="icon">
                 <i class="ion ion-document-text"></i>
               </div>
-              <a href="<?=base_url()?>pbi/aktif" class="small-box-footer">Selengkapnya<i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?=base_url()?>transaksi" class="small-box-footer">Selengkapnya<i class="fas fa-arrow-circle-right"></i></a>
             </div>
 
           </div>
@@ -85,14 +85,14 @@
             <div class="small-box bg-danger">
               <div class="inner">
               <h3>
-              <h3>17</h3>
+              <h3><?= $jumlah_transaksi_tahun[0]->jumlah ?></h3>
                 </h3>
                 <p>Data Transaksi Tahun Ini</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
-              <a href="<?=base_url()?>pbi/nonaktif" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?=base_url()?>transaksi" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
             </div>
             
           </div>
