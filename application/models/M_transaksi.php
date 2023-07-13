@@ -80,6 +80,7 @@
         function get_data_join(){
             
             $this->db->select('a.*,  b.nama_barang');
+            $this->db->order_by('tanggal', 'ASC');
             $this->db->from('tbl_transaksi a');  
             $this->db->join('tbl_barang b', 'a.kode_barang = b.kode_barang', 'left');
 
@@ -88,10 +89,11 @@
             return $query->result();
         }
 
-        //
-        public function getMaxKodeBarang($where){
+        public function getMaxKodeBarang($where_kode_barang,$where_status){
             $this->db->select_max('no_bukti');
-            $this->db->like('no_bukti', $where, 'both');
+            // $this->db->like('no_bukti', $where, 'both');
+            $this->db->where('kode_barang', $where_kode_barang);
+            $this->db->where('status', $where_status);
             $query = $this->db->get('tbl_transaksi');
             // echo $this->db->last_query();
             return $query->row();

@@ -45,14 +45,33 @@ class Transaksi extends CI_Controller {
 		$insert['kode_barang'] 	= $this->input->post('id_barang');
 		$insert['tanggal'] 		= $this->input->post('tanggal');
 		//membuat nomor bukti
-		$inisial_kode_barang = substr($kode_barang, 0, 1);
-		$where = '/'.$inisial_kode_barang;
-		$max_no_bukti = $this->M_transaksi->getMaxKodeBarang($where);
-		$urutan = (int) substr($max_no_bukti->no_bukti, 7, 3);
-		$urutan++;
-		$huruf = substr($kode_barang, 0, 1);
-		$no_bukti_baru = $huruf . sprintf("%03s", $urutan);
-		$insert['no_bukti'] 	= ($status=='1') ? 'Beli/'.$no_bukti_baru : 'Mut/'.$no_bukti_baru ;
+		if ($status==1) {//Beli
+			$max_no_bukti = $this->M_transaksi->getMaxKodeBarang($kode_barang,$status);
+			if (empty($max_no_bukti)) {
+				$urutan = 1;
+			} else {
+				$urutan = (int) substr($max_no_bukti->no_bukti, 11, 5);
+			}
+			
+			$urutan++;
+			$no_bukti_baru = $kode_barang.'/' . sprintf("%05s", $urutan);
+			
+			$insert['no_bukti'] 	= 'Beli/'.$no_bukti_baru;
+		} else {//Mutasi
+			$max_no_bukti = $this->M_transaksi->getMaxKodeBarang($kode_barang,$status);
+			if (empty($max_no_bukti)) {
+				$urutan = 1;
+			} else {
+				$urutan = (int) substr($max_no_bukti->no_bukti, 10, 5);
+			}
+			
+			$urutan++;
+			$no_bukti_baru = $kode_barang.'/' . sprintf("%05s", $urutan);
+			
+			$insert['no_bukti'] 	= 'Mut/'.$no_bukti_baru ;
+		}
+		
+		
 		
 		$insert['jumlah'] 		= $this->input->post('jumlah');
 		$insert['harga'] 		= $this->input->post('harga');

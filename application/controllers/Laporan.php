@@ -38,11 +38,6 @@ class Laporan extends CI_Controller {
         $data['barang'] = $get_barang[0];
         $data['sisa'] = $jml_stok_terbaru->jumlah_stok_terbaru;
 
-        // echo '<pre>';
-        // print_r($data);
-        // echo '</pre>';
-        // die();
-
         $sess['session'] = $this->getSession;
 		$this->load->view('templates/header',$sess);
 		$this->load->view('laporan/v_kartu_stok',$data);
