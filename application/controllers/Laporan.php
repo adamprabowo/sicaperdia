@@ -512,13 +512,13 @@ class Laporan extends CI_Controller {
         );
         $objPHPExcel->getActiveSheet()->getStyle('A6:I'.$rowCount_Total.'')->applyFromArray($style);
 
-        $filename = "Laporan Persediaan-". date("Y-m-d-H-i-s").".xlsx";
+        $filename = "Laporan Persediaan ". date("Y-m-d-H-i-s").".xlsx";
         $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
         ob_end_clean();
-        header('Content-type: application/vnd.ms-excel');
+        header('Content-Type: application/openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment; filename="'.$filename.'"');
         $objWriter->save('php://output');
-        
+        exit;
     }
 
     private function returnDataTahunan($param){
